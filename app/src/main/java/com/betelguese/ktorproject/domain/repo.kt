@@ -20,7 +20,7 @@ class repos(private val myrepos: myrepo) {
                 delay(1000)
                 emit(Resource.Success<List<comment>>(values))
             } catch (e: IOException) {
-                emit(Resource.Error<List<comment>>(e.localizedMessage ?: "Error Occured"))
+                emit(Resource.Error<List<comment>>(e.localizedMessage))
             }
         }
 

@@ -54,7 +54,7 @@ class MainActivity : ComponentActivity() {
 
                         state.let {
                             Column(modifier = Modifier.fillMaxSize()) {
-                                LazyColumn(modifier = Modifier.fillMaxSize()) {
+                                LazyColumn(modifier = Modifier.fillMaxWidth().padding(5.dp)) {
                                     itemsIndexed(it.comment) { _, comment ->
                                         CommentList(
                                             comment = comment
@@ -64,9 +64,9 @@ class MainActivity : ComponentActivity() {
                             if (it.isloading) {
                                 AnimatedShimmer()
                             }
-//                            if (it.error!!.isNotEmpty()) {
-//                                Text(text = state.error ?: "Some Error ", fontSize = 23.sp, color = Color.Red)
-//                            }
+                            else if(it.error.isNullOrEmpty()) {
+                                Text(text = state.error ?: "Some Error ", fontSize = 23.sp, color = Color.Red)
+                            }
 
                         }
 
@@ -84,7 +84,7 @@ fun CommentList(comment: comment) {
     Card(
         elevation = 4.dp,
         backgroundColor = Color.LightGray,
-        modifier = Modifier.padding(5.dp)
+        modifier = Modifier.padding(5.dp).fillMaxWidth()
     ) {
         Row(
             modifier = Modifier
