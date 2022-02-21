@@ -1,7 +1,9 @@
 package com.betelguese.ktorproject.data
 
 import com.betelguese.ktorproject.domain.comment
+import kotlinx.serialization.*
 
+@Serializable
 data class Comments(
     val body: String,
     val email: String,

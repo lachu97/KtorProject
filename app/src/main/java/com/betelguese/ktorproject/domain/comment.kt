@@ -1,5 +1,8 @@
 package com.betelguese.ktorproject.domain
 
+import kotlinx.serialization.*
+
+@Serializable
 data class comment(
     val name: String?,
     val body: String?,

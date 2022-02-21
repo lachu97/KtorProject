@@ -12,15 +12,15 @@ class repos(private val myrepos: myrepo) {
     operator fun invoke(): Flow<Resource<List<comment>>> {
         return flow {
             try {
-                emit(Resource.Loading())
+                emit(Resource.Loading<List<comment>>())
                 delay(500)
                 val values = myrepos.getcomments().map {
                     it.toCom()
                 }
                 delay(1000)
-                emit(Resource.Success(values))
+                emit(Resource.Success<List<comment>>(values))
             } catch (e: IOException) {
-                emit(Resource.Error(e.localizedMessage ?: "Error Occured"))
+                emit(Resource.Error<List<comment>>(e.localizedMessage ?: "Error Occured"))
             }
         }
 
