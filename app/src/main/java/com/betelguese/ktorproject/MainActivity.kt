@@ -3,9 +3,11 @@ package com.betelguese.ktorproject
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
@@ -14,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -52,20 +55,35 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val state = myviewm.newvalue.value
 
-                        state.let {
-                            Column(modifier = Modifier.fillMaxSize()) {
-                                LazyColumn(modifier = Modifier.fillMaxWidth().padding(5.dp)) {
-                                    itemsIndexed(it.comment) { _, comment ->
-                                        CommentList(
-                                            comment = comment
-                                        )
+                    state.let {
+                        Column(modifier = Modifier.fillMaxSize()) {
+                            LazyColumn(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(5.dp)
+                            ) {
+                                itemsIndexed(it.comment) { _, comment ->
+                                    CommentList(
+                                        comment = comment
+                                    )
+                                }
+                            }
+                            if (it.isloading) {
+                                Column(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                ) {
+                                    repeat(6) {
+                                        AnimatedShimmer()
                                     }
                                 }
-                            if (it.isloading) {
-                                AnimatedShimmer()
-                            }
-                            else if(it.error.isNullOrEmpty()) {
-                                Text(text = state.error ?: "Some Error ", fontSize = 23.sp, color = Color.Red)
+
+                            } else if (it.error.isNullOrEmpty()) {
+                                Text(
+                                    text = state.error ?: "Some Error ",
+                                    fontSize = 23.sp,
+                                    color = Color.Red
+                                )
                             }
 
                         }
@@ -84,29 +102,51 @@ fun CommentList(comment: comment) {
     Card(
         elevation = 4.dp,
         backgroundColor = Color.LightGray,
-        modifier = Modifier.padding(5.dp).fillMaxWidth()
+        modifier = Modifier
+            .padding(5.dp)
+            .fillMaxWidth(),
+        border = BorderStroke(2.dp, color = Color.Blue),
+        shape = RoundedCornerShape(20.dp)
     ) {
-        Row(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(10.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = Alignment.CenterVertically
+            verticalArrangement = Arrangement.SpaceAround,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             comment.name.let {
                 Text(
                     text = it ?: "Random Name",
                     fontSize = 21.sp,
-                    fontWeight = FontWeight.ExtraBold
+                    fontWeight = FontWeight.ExtraBold,
+                    fontFamily = FontFamily.SansSerif,
+
+                    modifier = Modifier
+                        .padding(5.dp)
                 )
             }
             Spacer(modifier = Modifier.padding(2.dp))
             comment.body.let {
-                Text(text = it ?: "Random Body", fontSize = 17.sp)
+                Text(
+                    text = it ?: "Random Body",
+                    fontSize = 17.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    fontFamily = FontFamily.SansSerif,
+                    modifier = Modifier
+                        .padding(5.dp)
+
+                )
             }
             Spacer(modifier = Modifier.padding(2.dp))
             comment.email.let {
-                Text(text = it ?: "Random Email", fontSize = 20.sp, fontWeight = FontWeight.Bold)
+                Text(
+                    text = it ?: "Random Email",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier
+                        .padding(5.dp)
+                )
 
             }
 
