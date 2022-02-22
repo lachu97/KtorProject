@@ -7,10 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.betelguese.ktorproject.commons.Resource
 import com.betelguese.ktorproject.domain.commentstate
 import com.betelguese.ktorproject.domain.repos
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
-class Myviewmodel(
+@HiltViewModel
+class Myviewmodel @Inject constructor(
     private val repos: repos
 ) : ViewModel() {
     private val _myvalue = mutableStateOf(commentstate())

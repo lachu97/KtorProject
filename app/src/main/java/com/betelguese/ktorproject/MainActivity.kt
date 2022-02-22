@@ -3,6 +3,7 @@ package com.betelguese.ktorproject
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -26,26 +27,28 @@ import com.betelguese.ktorproject.domain.repos
 import com.betelguese.ktorproject.ui.theme.KtorProjectTheme
 import com.betelguese.ktorproject.views.AnimatedShimmer
 import com.betelguese.ktorproject.views.Myviewmodel
+import dagger.hilt.android.AndroidEntryPoint
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    val myviewm by viewModels<Myviewmodel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val httpclient = HttpClient(CIO) {
-            install(JsonFeature) {
-                serializer = GsonSerializer()
-            }
-            install(Logging) {
-                level = LogLevel.BODY
-            }
-        }
-        val repository = myrepo(httpclient)
-        val repos1 = repos(repository)
-        val myviewm = Myviewmodel(repos1)
+//        val httpclient = HttpClient(CIO) {
+//            install(JsonFeature) {
+//                serializer = GsonSerializer()
+//            }
+//            install(Logging) {
+//                level = LogLevel.BODY
+//            }
+//        }
+//        val repository = myrepo(httpclient)
+//        val repos1 = repos(repository)
+//        val myviewm = Myviewmodel(repos1)
         setContent {
             KtorProjectTheme {
                 // A surface container using the 'background' color from the theme
