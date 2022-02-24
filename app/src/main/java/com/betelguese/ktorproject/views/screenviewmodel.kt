@@ -13,17 +13,17 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @HiltViewModel
-class Myviewmodel @Inject constructor(
+class myViewModel @Inject constructor(
     private val repos: repos
 ) : ViewModel() {
     private val _myvalue = mutableStateOf(commentstate())
     val newvalue: State<commentstate> = _myvalue
 
     init {
-        getcomments()
+        getComments()
     }
 
-    private fun getcomments() {
+     fun getComments() {
         repos().onEach {
             when (it) {
                 is Resource.Loading -> {

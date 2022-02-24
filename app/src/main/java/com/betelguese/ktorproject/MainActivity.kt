@@ -9,10 +9,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,24 +18,21 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.betelguese.ktorproject.data.myrepo
 import com.betelguese.ktorproject.domain.comment
-import com.betelguese.ktorproject.domain.repos
 import com.betelguese.ktorproject.ui.theme.KtorProjectTheme
 import com.betelguese.ktorproject.views.AnimatedShimmer
-import com.betelguese.ktorproject.views.Myviewmodel
+import com.betelguese.ktorproject.views.myViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import io.ktor.client.*
-import io.ktor.client.engine.cio.*
-import io.ktor.client.features.json.*
-import io.ktor.client.features.json.serializer.*
-import io.ktor.client.features.logging.*
+import javax.inject.Inject
+
+
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-    val myviewm by viewModels<Myviewmodel>()
+    val myviewm by viewModels<myViewModel>()
+    @Inject lateinit var somerandomstring:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        val httpclient = HttpClient(CIO) {
+        //        val httpclient = HttpClient(CIO) {
 //            install(JsonFeature) {
 //                serializer = GsonSerializer()
 //            }
@@ -60,6 +54,7 @@ class MainActivity : ComponentActivity() {
 
                     state.let {
                         Column(modifier = Modifier.fillMaxSize()) {
+                            Spacer(modifier = Modifier.padding(1.dp))
                             LazyColumn(
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -150,10 +145,12 @@ fun CommentList(comment: comment) {
                     modifier = Modifier
                         .padding(5.dp)
                 )
-
             }
-
         }
-
     }
+}
+
+@Composable
+fun mycompose() {
+
 }

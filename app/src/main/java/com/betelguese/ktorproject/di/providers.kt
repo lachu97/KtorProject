@@ -15,10 +15,16 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object myproviders{
+
+    @Provides
+    fun sometandomstring() : String {
+        return "Saravana"
+    }
+
     @Provides
     @Singleton
     fun provideHttpclient():HttpClient{
-        return HttpClient(CIO){
+        return HttpClient(CIO) {
             install(JsonFeature){
                 serializer = GsonSerializer()
             }

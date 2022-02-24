@@ -13,7 +13,7 @@ class repos(private val myrepos: myrepo) {
         return flow {
             try {
                 emit(Resource.Loading<List<comment>>())
-                delay(500)
+                delay(1500)
                 val values = myrepos.getcomments().map {
                     it.toCom()
                 }
