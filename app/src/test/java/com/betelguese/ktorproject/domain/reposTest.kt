@@ -7,7 +7,7 @@ import org.junit.Before
 import org.junit.Test
 import kotlin.random.Random
 
-class reposTest {
+class ReposTest {
     lateinit var items: List<Comments>
     lateinit var body: Comments
 
@@ -28,8 +28,11 @@ class reposTest {
     }
 
     @Test
-    fun `checkforbody successfully`() {
+    fun `check for items randomly`() {
         val id = items.size
         assertEquals(body, items.get(Random.nextInt(id)))
+    }
+    fun `get`(){
+
     }
 }

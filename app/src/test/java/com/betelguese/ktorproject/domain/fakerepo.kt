@@ -11,7 +11,7 @@ class fakerepo : NetworkService {
 //            Comments("Some 78","saravana@gmail.com",782,"Saravana",506),
 //            Comments("Some 79","raghu@gmail.com",289,"Raghunath",5478),
 //        )
-        return listOf<Comments>(
+        return listOf(
             Comments("Some Body", "vindo@gmail.com", 2, "Vinod", 56),
             Comments("Body 4", "Neeraj@gmail.com", 26, "Neeraj", 59),
             Comments("Some 78", "saravana@gmail.com", 782, "Saravana", 506),

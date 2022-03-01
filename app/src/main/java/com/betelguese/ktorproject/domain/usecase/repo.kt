@@ -3,6 +3,7 @@ package com.betelguese.ktorproject.domain
 import com.betelguese.ktorproject.commons.Resource
 import com.betelguese.ktorproject.data.myrepo
 import com.betelguese.ktorproject.data.toCom
+import io.ktor.client.call.*
 import io.ktor.utils.io.errors.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -21,6 +22,9 @@ class repos(private val myrepos: myrepo) {
                 emit(Resource.Success<List<comment>>(values))
             } catch (e: IOException) {
                 emit(Resource.Error<List<comment>>(e.localizedMessage))
+            } catch (e:NoTransformationFoundException){
+                emit(Resource.Error<List<comment>>(e.localizedMessage))
+
             }
         }
 

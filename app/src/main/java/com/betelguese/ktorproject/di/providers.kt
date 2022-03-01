@@ -14,33 +14,35 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object myproviders{
+object myproviders {
 
     @Provides
-    fun sometandomstring() : String {
+    fun sometandomstring(): String {
         return "Saravana"
     }
 
     @Provides
     @Singleton
-    fun provideHttpclient():HttpClient{
+    fun provideHttpclient(): HttpClient {
         return HttpClient(CIO) {
-            install(JsonFeature){
+            install(JsonFeature) {
                 serializer = GsonSerializer()
             }
-            install(Logging){
+            install(Logging) {
                 level = LogLevel.BODY
             }
         }
     }
+
     @Provides
     @Singleton
-    fun providerepo(client : HttpClient):myrepo{
+    fun providerepo(client: HttpClient): myrepo {
         return myrepo(client = client)
     }
+
     @Provides
     @Singleton
-    fun providerepos(myrepo: myrepo):repos{
+    fun providerepos(myrepo: myrepo): repos {
         return repos(myrepo)
     }
 }
