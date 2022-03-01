@@ -9,7 +9,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material.Card
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,7 +31,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     val myviewm by viewModels<myViewModel>()
-    @Inject lateinit var somerandomstring:String
+    @Inject
+    lateinit var somerandomstring: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //        val httpclient = HttpClient(CIO) {
@@ -48,7 +51,9 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    color = Color.LightGray.copy(
+                        alpha = 0.5f
+                    )
                 ) {
                     val state = myviewm.newvalue.value
 
@@ -98,18 +103,23 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun CommentList(comment: comment) {
     Card(
-        elevation = 4.dp,
-        backgroundColor = Color.LightGray,
+        elevation = 8.dp,
+        backgroundColor = Color.LightGray.copy(
+            alpha = 0.9f,
+
+        ),
         modifier = Modifier
             .padding(5.dp)
             .fillMaxWidth(),
-        border = BorderStroke(2.dp, color = Color.Blue),
+        border = BorderStroke(2.dp, color = Color.Black.copy(
+            alpha = 0.5f
+        )),
         shape = RoundedCornerShape(20.dp)
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(10.dp),
+                .padding(2.dp),
             verticalArrangement = Arrangement.SpaceAround,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
