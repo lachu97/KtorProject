@@ -17,9 +17,9 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun AnimatedShimmer() {
     val shimmerColors = listOf(
-        Color.LightGray.copy(alpha = 0.6f),
-        Color.LightGray.copy(alpha = 0.2f),
-        Color.LightGray.copy(alpha = 0.6f),
+        Color.Cyan.copy(alpha = 0.6f),
+        Color.Cyan.copy(alpha = 0.2f),
+        Color.Cyan.copy(alpha = 0.6f),
     )
 
     val transition = rememberInfiniteTransition()
