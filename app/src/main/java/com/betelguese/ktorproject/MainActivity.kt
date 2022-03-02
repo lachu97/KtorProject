@@ -19,12 +19,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.betelguese.ktorproject.domain.comment
 import com.betelguese.ktorproject.ui.theme.KtorProjectTheme
+import com.betelguese.ktorproject.ui.theme.MyBlack
 import com.betelguese.ktorproject.views.AnimatedShimmer
 import com.betelguese.ktorproject.views.myViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -54,7 +56,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = Color.Transparent
+                    color = MyBlack
                 ) {
                     val state = myviewm.newvalue.value
 
@@ -66,9 +68,9 @@ class MainActivity : ComponentActivity() {
                                     .fillMaxWidth()
                                     .padding(5.dp)
                             ) {
-                                itemsIndexed(it.comment) { _, comment ->
+                                itemsIndexed(it.comment) { _, cmt ->
                                     CommentList(
-                                        comment = comment
+                                        comment = cmt
                                     )
                                 }
                             }

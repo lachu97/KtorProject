@@ -17,9 +17,15 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun AnimatedShimmer() {
     val shimmerColors = listOf(
-        Color.Cyan.copy(alpha = 0.6f),
-        Color.Cyan.copy(alpha = 0.2f),
-        Color.Cyan.copy(alpha = 0.6f),
+        Color.Black.copy(
+            alpha = 0.7f
+        ),
+        Color.Black.copy(
+            alpha = 0.3f
+        ),
+        Color.Black.copy(
+            alpha = 0.7f
+        )
     )
 
     val transition = rememberInfiniteTransition()
@@ -44,6 +50,7 @@ fun AnimatedShimmer() {
     // ShimmerGridItem(brush = brush)
     ShimmerGrid(brush = brush)
 }
+
 @Composable
 fun ShimmerGridItem(brush: Brush) {
     Row(
@@ -78,18 +85,24 @@ fun ShimmerGridItem(brush: Brush) {
         }
     }
 }
+
 @Composable
-fun ShimmerGrid(brush: Brush){
-    Row(modifier = Modifier
-        .padding(10.dp)
-        .fillMaxWidth(),
+fun ShimmerGrid(brush: Brush) {
+    Row(
+        modifier = Modifier
+            .padding(10.dp)
+            .fillMaxWidth()
+
+        ,
     ) {
         Column(modifier = Modifier.padding(5.dp)) {
-            Spacer( modifier = Modifier
-                .height(30.dp)
-                .clip(RoundedCornerShape(10.dp))
-                .fillMaxWidth(fraction = 0.5f)
-                .background(brush))
+            Spacer(
+                modifier = Modifier
+                    .height(30.dp)
+                    .clip(RoundedCornerShape(10.dp))
+                    .fillMaxWidth(fraction = 0.5f)
+                    .background(brush)
+            )
             Spacer(modifier = Modifier.padding(5.dp))
             Spacer(
                 modifier = Modifier
@@ -109,11 +122,13 @@ fun ShimmerGrid(brush: Brush){
         }
         Spacer(modifier = Modifier.padding(5.dp))
         Column(modifier = Modifier.padding(5.dp)) {
-            Spacer( modifier = Modifier
-                .height(30.dp)
-                .clip(RoundedCornerShape(10.dp))
-                .fillMaxWidth(fraction = 0.5f)
-                .background(brush))
+            Spacer(
+                modifier = Modifier
+                    .height(30.dp)
+                    .clip(RoundedCornerShape(10.dp))
+                    .fillMaxWidth(fraction = 0.5f)
+                    .background(brush)
+            )
             Spacer(modifier = Modifier.padding(5.dp))
             Spacer(
                 modifier = Modifier
